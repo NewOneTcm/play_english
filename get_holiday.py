@@ -3,7 +3,7 @@ from datetime import datetime
 
 YEAR = 2026
 # 记得把这里改成你想要的实际路径，或者直接写 "calendar.txt" 存在当前目录
-OUTPUT = "calendar.txt" 
+OUTPUT = "/home/newone/calendar/calendar.txt" 
 
 url = f"https://timor.tech/api/holiday/year/{YEAR}"
 

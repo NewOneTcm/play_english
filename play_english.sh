@@ -114,7 +114,18 @@ TODAY=$(date +%F)
 WEEKDAY=$(date +%u)
 
 # ========= 读取日历 =========
-TYPE=$(grep "^$TODAY " "$CALENDAR_FILE" | awk '{print $2}')
+if [ ! -f "$CALENDAR_FILE" ]; then
+    echo "⚠️ 日历文件不存在，使用默认逻辑" >> "$LOG_FILE"
+    TYPE=""
+else
+    TYPE=$(grep "^$TODAY " "$CALENDAR_FILE" | awk '{print $2}')
+
+    if [ -z "$TYPE" ]; then
+        echo "ℹ️ 日历无匹配日期，使用默认逻辑" >> "$LOG_FILE"
+    fi
+fi
+
+
 
 # ========= 判断类型 =========
 if [ -z "$TYPE" ]; then
